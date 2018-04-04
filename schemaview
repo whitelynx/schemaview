@@ -1,3 +1,6 @@
 #!/bin/bash
 
-exec $PWD/node_modules/.bin/electron $PWD/main.js "$@"
+READLINK="$(which greadlink 2>/dev/null || which readlink)"
+SCHEMAVIEW_PATH="$(dirname "$("$READLINK" -f "$0")")"
+
+exec $SCHEMAVIEW_PATH/node_modules/.bin/electron $SCHEMAVIEW_PATH/main.js "$@"
