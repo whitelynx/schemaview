@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>&lt;schemaview loading&gt;</title>
+		<link rel="stylesheet" href="node_modules/json-schema-view-js/dist/style.min.css">
+		<style>
+			body {
+				background-color: black;
+				color: white;
+			}
+		</style>
+	</head>
+	<body>
+		<script>
+			require('electron').ipcRenderer.on('viewSchema', (event, schema, filename) => {
+				console.log('Got `viewSchema` event:', [event, schema, filename]);
+				document.title = 'schemaview: ' + filename;
+
+				const JSONSchemaView = require('json-schema-view-js').default;
+				const view = new JSONSchemaView(schema, 5, { theme: 'dark' });
+				//const view = new JSONSchemaView(schema, 1);
+				document.body.appendChild(view.render());
+			});
+
+			require('mousetrap').bind('esc', () => window.close(), 'keyup');
+		</script>
+	</body>
+</html>
