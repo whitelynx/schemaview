@@ -1,7 +1,7 @@
 schemaview
 ==========
 
-Standalone JSON Schema viewer
+Standalone JSON Schema viewer using [Electron](https://electronjs.org/) and [json-schema-view-js](https://github.com/mohsen1/json-schema-view-js).
 
 
 Setup
